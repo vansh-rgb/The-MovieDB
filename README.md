@@ -5,7 +5,7 @@
     hspace="10" vspace="10">](/ScreenShots/Logo.jpg)
 
 #### Link
-[Click here to download](shorturl.at/foyOT)
+[Click here to download](https://drive.google.com/file/d/14Ak7IFaIW0bU5YeNI32rKIKPYZMU0Czl/view)
 
 ## About
 
