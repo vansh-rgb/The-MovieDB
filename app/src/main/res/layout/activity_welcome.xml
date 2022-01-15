@@ -15,32 +15,36 @@
             android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_weight="1"
+            android:backgroundTint="#FF1744"
             android:tag="popular"
-            android:text="@string/popular"
-            android:layout_weight="1"/>
+            android:text="@string/popular" />
 
         <Button
             android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_weight="1"
+            android:backgroundTint="#2979FF"
             android:tag="now_playing"
-            android:text="@string/now_playing"
-            android:layout_weight="1"/>
+            android:text="@string/now_playing" />
 
         <Button
             android:id="@+id/button4"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_weight="1"
+            android:backgroundTint="#5FC30A"
             android:tag="top_rated"
-            android:text="@string/top_rated"
-            android:layout_weight="1"/>
+            android:text="@string/top_rated" />
 
         <Button
             android:id="@+id/button5"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_weight="1"
+            android:backgroundTint="#FFAB00"
             android:tag="upcoming"
-            android:text="@string/upcoming"
-            android:layout_weight="1" />
+            android:text="@string/upcoming" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
