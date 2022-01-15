@@ -33,6 +33,7 @@ class HomeFragment : Fragment() {
     private lateinit var progressBar: ProgressBar
     private lateinit var rlLoading: RelativeLayout
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,9 +49,14 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupRecycler(view: View) {
+        val bundle = arguments
+        val message = bundle?.getString("category")
+        if (message != null) {
+            Log.d("mCategory", message)
+        }
         recyclerMovies = view.findViewById(R.id.recyclerMovies)
         val queue = Volley.newRequestQueue(activity as Context)
-        val url = "https://api.themoviedb.org/3/movie/popular?api_key=" + BuildConfig.TMDB_API_KEY
+        val url = "https://api.themoviedb.org/3/movie/"+message+"?api_key=" + BuildConfig.TMDB_API_KEY
         Log.d("URL::::::::", "setupRecycler: $url")
         if (ConnectionManager().isNetworkAvailable(activity as Context)) {
             val jsonObjectRequest = object : JsonObjectRequest(

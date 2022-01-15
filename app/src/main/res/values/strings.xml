@@ -10,4 +10,8 @@
     <string name="_4_7">4.7</string>
     <string name="openDrawer">NavigationViewClosed</string>
     <string name="closeDrawer">NavigationView</string>
+    <string name="popular">popular</string>
+    <string name="now_playing">now playing</string>
+    <string name="top_rated">top rated</string>
+    <string name="upcoming">upcoming</string>
 </resources>

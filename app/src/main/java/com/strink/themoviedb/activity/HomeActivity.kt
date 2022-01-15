@@ -1,9 +1,11 @@
 package com.strink.themoviedb.activity
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -23,6 +25,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var navigationView: NavigationView
     private var previousMenuItem: MenuItem? = null
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
+    private lateinit var movieCategory: String
 
     private lateinit var binding: ActivityHomeBinding
 
@@ -30,6 +33,9 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        movieCategory = intent.getStringExtra("Tag").toString()
+        Log.d("Category", movieCategory)
 
         init()
 
@@ -48,13 +54,15 @@ class HomeActivity : AppCompatActivity() {
 
             previousMenuItem = item
 
-
+            val arguments = Bundle()
+            arguments.putString("category", movieCategory)
 
             val fragmentTransaction = supportFragmentManager.beginTransaction()
 
-            when(item.itemId) {
+            when (item.itemId) {
                 R.id.home -> {
                     val homeFragment = HomeFragment()
+                    homeFragment.arguments = arguments
                     fragmentTransaction.replace(R.id.frame, homeFragment)
                     fragmentTransaction.commit()
                     supportActionBar?.title = "Popular Movies"
@@ -73,7 +81,10 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun displayHome() {
+        val bundle = Bundle()
+        bundle.putString("category", movieCategory)
         val fragment = HomeFragment()
+        fragment.arguments = bundle
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frame, fragment)
         transaction.commit()
@@ -127,16 +138,21 @@ class HomeActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun openHome () {
+    private fun openHome() {
+        val frag = HomeFragment()
+        val bundle = Bundle()
+        bundle.putString("category", movieCategory)
+        Log.d("Check 77", movieCategory)
+        frag.arguments = bundle
         supportFragmentManager.beginTransaction()
-            .replace(R.id.frame, HomeFragment())
+            .replace(R.id.frame, frag)
             .commit()
         supportActionBar?.title = "All Movies"
         navigationView.setCheckedItem(R.id.home)
     }
 
     override fun onBackPressed() {
-        when(supportFragmentManager.findFragmentById(R.id.frame)) {
+        when (supportFragmentManager.findFragmentById(R.id.frame)) {
             !is HomeFragment -> openHome()
             else -> super.onBackPressed()
         }
