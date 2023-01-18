@@ -89,14 +89,15 @@ class AllMoviesAdapter(private var movies: ArrayList<Movies>, private val contex
 
     class DBTask(context: Context, private val movieEntity: MovieEntity, private val mode: Int) :
         CoroutineAsyncTask<Void, Void, Boolean>() {
-        private val db = Room.databaseBuilder(context, MovieDatabase::class.java, "movie-db").allowMainThreadQueries().build()
+        private val db = Room.databaseBuilder(context, MovieDatabase::class.java, "movie-db")
+            .allowMainThreadQueries().build()
 
         override fun doInBackground(vararg params: Void?): Boolean {
             when (mode) {
                 1 -> {
                     val res: MovieEntity? = db.movieDao().getMovieById(movieEntity.id.toString())
                     db.close()
-                    return res!=null
+                    return res != null
                 }
                 2 -> {
                     db.movieDao().insertMovie(movieEntity)
@@ -115,7 +116,9 @@ class AllMoviesAdapter(private var movies: ArrayList<Movies>, private val contex
 
     class GetAllFavTask(context: Context) :
         CoroutineAsyncTask<Void, Void, List<String>>() {
-        private val db = Room.databaseBuilder(context, MovieDatabase::class.java, "movie-db").allowMainThreadQueries().build()
+        private val db = Room.databaseBuilder(context, MovieDatabase::class.java, "movie-db")
+            .allowMainThreadQueries().build()
+
         override fun doInBackground(vararg params: Void?): List<String> {
             val list = db.movieDao().getAllMovies()
             val listOfIds = arrayListOf<String>()
